@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบทดสอบเลือกสาขาเรียน</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>แบบทดสอบเลือกสาขาเรียน</h1>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. คุณชอบคณิตศาสตร์และการคำนวณหรือไม่?</p>
+        <label><input type="radio" name="q1" value="วิศวะ"> ใช่</label>
+        <label><input type="radio" name="q1" value="ศิลป์"> ไม่</label>
+      </div>
+
+      <div class="question">
+        <p>2. คุณสนใจการเขียนโปรแกรมหรือเทคโนโลยีไหม?</p>
+        <label><input type="radio" name="q2" value="คอม"> ใช่</label>
+        <label><input type="radio" name="q2" value="บริหาร"> ไม่</label>
+      </div>
+
+      <div class="question">
+        <p>3. คุณชอบการพูดคุย ประสานงาน และทำงานกับคนไหม?</p>
+        <label><input type="radio" name="q3" value="บริหาร"> ใช่</label>
+        <label><input type="radio" name="q3" value="วิศวะ"> ไม่</label>
+      </div>
+
+      <button type="button" onclick="checkResult()">ส่งคำตอบ</button>
+    </form>
+
+    <div id="result" class="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
