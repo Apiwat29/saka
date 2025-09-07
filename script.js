@@ -1,28 +1,27 @@
-function checkResult() {
-  let answers = document.querySelectorAll("input[type=radio]:checked");
-  if (answers.length < 3) {
-    alert("กรุณาตอบทุกข้อก่อนส่งคำตอบ");
-    return;
+function startQuiz() {
+  const quizContainer = document.getElementById("quiz");
+  quizContainer.innerHTML = `
+    <h3>คำถามที่ 1: คุณชอบวิชาอะไรที่สุด?</h3>
+    <button onclick="showResult('science')">วิทยาศาสตร์</button>
+    <button onclick="showResult('math')">คณิตศาสตร์</button>
+    <button onclick="showResult('art')">ศิลปะ</button>
+    <button onclick="showResult('business')">ธุรกิจ</button>
+  `;
+}
+
+function showResult(choice) {
+  const result = document.getElementById("result");
+  let text = "";
+
+  if (choice === "science") {
+    text = "🎓 คุณเหมาะกับสาย วิทยาศาสตร์ เช่น แพทย์ วิศวะ วิทยาศาสตร์";
+  } else if (choice === "math") {
+    text = "🎓 คุณเหมาะกับสาย คณิตศาสตร์ เช่น สถิติ วิศวกรรม คอมพิวเตอร์";
+  } else if (choice === "art") {
+    text = "🎨 คุณเหมาะกับสาย ศิลปะ เช่น การออกแบบ ดนตรี สถาปัตย์";
+  } else if (choice === "business") {
+    text = "💼 คุณเหมาะกับสาย ธุรกิจ เช่น การตลาด การเงิน บริหารธุรกิจ";
   }
 
-  // เก็บคะแนนแต่ละสาขา
-  let scores = {
-    "วิศวะ": 0,
-    "คอม": 0,
-    "บริหาร": 0,
-    "ศิลป์": 0
-  };
-
-  answers.forEach(ans => {
-    scores[ans.value]++;
-  });
-
-  // หาสาขาที่ได้คะแนนสูงสุด
-  let bestMajor = Object.keys(scores).reduce((a, b) =>
-    scores[a] > scores[b] ? a : b
-  );
-
-  // แสดงผล
-  let resultDiv = document.getElementById("result");
-  resultDiv.innerHTML = "คุณเหมาะกับสาขา: <span>" + bestMajor + "</span>";
+  result.innerHTML = `<p><b>ผลลัพธ์:</b> ${text}</p>`;
 }
