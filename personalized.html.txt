@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized - เว็บไซต์แนะนำสาขาเรียน</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">LOGO</div>
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="personalized.html">Personalized</a></li>
+    </ul>
+    <a href="login.html"><button class="login-btn">Login</button></a>
+  </nav>
+
+  <div class="container">
+    <h1>แบบทดสอบแนะนำสาขา</h1>
+    <p>หน้านี้จะใช้สำหรับทำแบบทดสอบ (สามารถใส่คำถาม/โค้ดทดสอบได้)</p>
+  </div>
+</body>
+</html>

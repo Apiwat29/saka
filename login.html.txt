@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - เว็บไซต์แนะนำสาขาเรียน</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">LOGO</div>
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="personalized.html">Personalized</a></li>
+    </ul>
+    <a href="login.html"><button class="login-btn">Login</button></a>
+  </nav>
+
+  <div class="container">
+    <h1>เข้าสู่ระบบ</h1>
+    <form>
+      <input type="text" placeholder="Name" style="padding:10px; width:250px; margin:10px;"><br>
+      <input type="password" placeholder="Password" style="padding:10px; width:250px; margin:10px;"><br>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+  </div>
+</body>
+</html>
