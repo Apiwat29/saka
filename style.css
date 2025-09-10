@@ -1,12 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: "Prompt", sans-serif;
-  background: #f0f4f8;
+  margin: 0;
+  background: #f7f9fc;
 }
 
 .navbar {
@@ -14,45 +9,46 @@ body {
   justify-content: space-between;
   align-items: center;
   background: #3498db;
-  color: white;
   padding: 15px 30px;
 }
 
 .navbar .logo {
+  font-size: 20px;
   font-weight: bold;
-  font-size: 24px;
+  color: white;
 }
 
-.navbar .menu {
+.navbar ul {
   list-style: none;
   display: flex;
   gap: 20px;
 }
 
-.navbar .menu li a {
+.navbar ul li a {
   color: white;
   text-decoration: none;
   font-weight: 500;
 }
 
-.navbar .menu li a:hover {
+.navbar ul li a:hover {
   text-decoration: underline;
 }
 
-.login-btn {
-  background: #2980b9;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-}
-
-.login-btn:hover {
-  background: #1f618d;
-}
-
-.container {
+.hero {
   text-align: center;
   padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.content {
+  padding: 30px;
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
