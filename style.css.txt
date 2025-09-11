@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Prompt", sans-serif;
+  background: #f0f4f8;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #3498db;
+  color: white;
+  padding: 15px 30px;
+}
+
+.navbar .logo {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.navbar .menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar .menu li a:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  background: #2980b9;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #1f618d;
+}
+
+.container {
+  text-align: center;
+  padding: 60px 20px;
+}
