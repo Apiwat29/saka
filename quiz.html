@@ -2,153 +2,125 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>แบบทดสอบเลือกสาขา</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบทดสอบค้นหาสาขา</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .question { margin-bottom: 15px; }
-  </style>
 </head>
 <body>
   <header>
     <img src="logo.png" alt="โลโก้เว็บไซต์" class="logo">
-    <h1>แบบทดสอบเลือกสาขาการเรียน</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="majors.html">ข้อมูลสาขา</a>
-      <a href="quiz.html">แบบทดสอบ</a>
+      <a href="quiz.html">ทำแบบทดสอบ</a>
     </nav>
   </header>
 
-  <main>
-    <form name="quizForm">
+  <main class="quiz-container">
+    <h2>📋 แบบทดสอบค้นหาสาขาที่เหมาะกับคุณ</h2>
+    <form id="quizForm">
+
       <!-- ข้อ 1 -->
       <div class="question">
-        1. ฉันชอบทำงานที่ใช้เครื่องมือหรืออุปกรณ์ ลงมือปฏิบัติจริงมากกว่านั่งโต๊ะทำงาน (R)<br>
-        <label><input type="radio" name="q1" value="R,1"> 1</label>
-        <label><input type="radio" name="q1" value="R,2"> 2</label>
-        <label><input type="radio" name="q1" value="R,3"> 3</label>
-        <label><input type="radio" name="q1" value="R,4"> 4</label>
-        <label><input type="radio" name="q1" value="R,5"> 5</label>
+        <p>1. ฉันชอบทำงานที่ใช้ เครื่องมือหรืออุปกรณ์ ลงมือปฏิบัติจริงมากกว่านั่งโต๊ะทำงาน</p>
+        <label><input type="radio" name="q1" value="R"> เห็นด้วย</label>
+        <label><input type="radio" name="q1" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q1" value=""> ไม่เห็นด้วย</label>
       </div>
 
       <!-- ข้อ 2 -->
       <div class="question">
-        2. ฉันสนุกกับการสืบค้น ทดลอง หรือหาคำตอบ ด้วยวิธีการเชิงวิทยาศาสตร์ (I)<br>
-        <label><input type="radio" name="q2" value="I,1"> 1</label>
-        <label><input type="radio" name="q2" value="I,2"> 2</label>
-        <label><input type="radio" name="q2" value="I,3"> 3</label>
-        <label><input type="radio" name="q2" value="I,4"> 4</label>
-        <label><input type="radio" name="q2" value="I,5"> 5</label>
+        <p>2. ฉันสนุกกับการ สืบค้น ทดลอง หรือหาคำตอบ ด้วยวิธีการเชิงวิทยาศาสตร์</p>
+        <label><input type="radio" name="q2" value="I"> เห็นด้วย</label>
+        <label><input type="radio" name="q2" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q2" value=""> ไม่เห็นด้วย</label>
       </div>
 
       <!-- ข้อ 3 -->
       <div class="question">
-        3. ฉันชอบการวาดรูป เขียน แต่งเพลง หรือสร้างสรรค์งานศิลป์ (A)<br>
-        <label><input type="radio" name="q3" value="A,1"> 1</label>
-        <label><input type="radio" name="q3" value="A,2"> 2</label>
-        <label><input type="radio" name="q3" value="A,3"> 3</label>
-        <label><input type="radio" name="q3" value="A,4"> 4</label>
-        <label><input type="radio" name="q3" value="A,5"> 5</label>
+        <p>3. ฉันชอบการ วาดรูป เขียน แต่งเพลง หรือสร้างสรรค์งานศิลป์</p>
+        <label><input type="radio" name="q3" value="A"> เห็นด้วย</label>
+        <label><input type="radio" name="q3" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q3" value=""> ไม่เห็นด้วย</label>
       </div>
 
       <!-- ข้อ 4 -->
       <div class="question">
-        4. ฉันมีความสุขเวลาได้ช่วยเหลือ แนะนำ หรือสอนผู้อื่น (S)<br>
-        <label><input type="radio" name="q4" value="S,1"> 1</label>
-        <label><input type="radio" name="q4" value="S,2"> 2</label>
-        <label><input type="radio" name="q4" value="S,3"> 3</label>
-        <label><input type="radio" name="q4" value="S,4"> 4</label>
-        <label><input type="radio" name="q4" value="S,5"> 5</label>
+        <p>4. ฉันมีความสุขเวลาได้ ช่วยเหลือ แนะนำ หรือสอนผู้อื่น</p>
+        <label><input type="radio" name="q4" value="S"> เห็นด้วย</label>
+        <label><input type="radio" name="q4" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q4" value=""> ไม่เห็นด้วย</label>
       </div>
 
       <!-- ข้อ 5 -->
       <div class="question">
-        5. ฉันอยากเป็นคนที่นำเสนอไอเดีย โน้มน้าว หรือเป็นผู้นำทีม (E)<br>
-        <label><input type="radio" name="q5" value="E,1"> 1</label>
-        <label><input type="radio" name="q5" value="E,2"> 2</label>
-        <label><input type="radio" name="q5" value="E,3"> 3</label>
-        <label><input type="radio" name="q5" value="E,4"> 4</label>
-        <label><input type="radio" name="q5" value="E,5"> 5</label>
+        <p>5. ฉันอยากเป็นคนที่ นำเสนอไอเดีย โน้มน้าว หรือเป็นผู้นำทีม</p>
+        <label><input type="radio" name="q5" value="E"> เห็นด้วย</label>
+        <label><input type="radio" name="q5" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q5" value=""> ไม่เห็นด้วย</label>
       </div>
 
       <!-- ข้อ 6 -->
       <div class="question">
-        6. ฉันรู้สึกพอใจเมื่อได้จัดระเบียบข้อมูล ทำงานเป็นระบบ หรือจัดการเอกสาร (C)<br>
-        <label><input type="radio" name="q6" value="C,1"> 1</label>
-        <label><input type="radio" name="q6" value="C,2"> 2</label>
-        <label><input type="radio" name="q6" value="C,3"> 3</label>
-        <label><input type="radio" name="q6" value="C,4"> 4</label>
-        <label><input type="radio" name="q6" value="C,5"> 5</label>
+        <p>6. ฉันรู้สึกพอใจเมื่อได้ จัดระเบียบข้อมูล ทำงานเป็นระบบ หรือจัดการเอกสาร</p>
+        <label><input type="radio" name="q6" value="C"> เห็นด้วย</label>
+        <label><input type="radio" name="q6" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q6" value=""> ไม่เห็นด้วย</label>
       </div>
 
       <!-- ข้อ 7 -->
       <div class="question">
-        7. ฉันสนใจงานที่เกี่ยวกับเครื่องกล อิเล็กทรอนิกส์ หรือการซ่อมบำรุง (R)<br>
-        <label><input type="radio" name="q7" value="R,1"> 1</label>
-        <label><input type="radio" name="q7" value="R,2"> 2</label>
-        <label><input type="radio" name="q7" value="R,3"> 3</label>
-        <label><input type="radio" name="q7" value="R,4"> 4</label>
-        <label><input type="radio" name="q7" value="R,5"> 5</label>
+        <p>7. ฉันสนใจงานที่เกี่ยวกับ เครื่องกล อิเล็กทรอนิกส์ หรือการซ่อมบำรุง</p>
+        <label><input type="radio" name="q7" value="R"> เห็นด้วย</label>
+        <label><input type="radio" name="q7" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q7" value=""> ไม่เห็นด้วย</label>
       </div>
 
       <!-- ข้อ 8 -->
       <div class="question">
-        8. ฉันชอบการคิดวิเคราะห์ ข้อมูลหรือทฤษฎีที่ซับซ้อน (I)<br>
-        <label><input type="radio" name="q8" value="I,1"> 1</label>
-        <label><input type="radio" name="q8" value="I,2"> 2</label>
-        <label><input type="radio" name="q8" value="I,3"> 3</label>
-        <label><input type="radio" name="q8" value="I,4"> 4</label>
-        <label><input type="radio" name="q8" value="I,5"> 5</label>
+        <p>8. ฉันชอบการ คิดวิเคราะห์ ข้อมูลหรือทฤษฎีที่ซับซ้อน</p>
+        <label><input type="radio" name="q8" value="I"> เห็นด้วย</label>
+        <label><input type="radio" name="q8" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q8" value=""> ไม่เห็นด้วย</label>
       </div>
 
       <!-- ข้อ 9 -->
       <div class="question">
-        9. ฉันอยากทำงานที่เปิดโอกาสให้แสดงออกทางความคิดสร้างสรรค์หรือศิลปะ (A)<br>
-        <label><input type="radio" name="q9" value="A,1"> 1</label>
-        <label><input type="radio" name="q9" value="A,2"> 2</label>
-        <label><input type="radio" name="q9" value="A,3"> 3</label>
-        <label><input type="radio" name="q9" value="A,4"> 4</label>
-        <label><input type="radio" name="q9" value="A,5"> 5</label>
+        <p>9. ฉันอยากทำงานที่เปิดโอกาสให้ แสดงออกทางความคิดสร้างสรรค์หรือศิลปะ</p>
+        <label><input type="radio" name="q9" value="A"> เห็นด้วย</label>
+        <label><input type="radio" name="q9" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q9" value=""> ไม่เห็นด้วย</label>
       </div>
 
       <!-- ข้อ 10 -->
       <div class="question">
-        10. ฉันรู้สึกมั่นใจเมื่อได้พูดต่อหน้าคนจำนวนมาก หรือทำกิจกรรมด้านธุรกิจ (E)<br>
-        <label><input type="radio" name="q10" value="E,1"> 1</label>
-        <label><input type="radio" name="q10" value="E,2"> 2</label>
-        <label><input type="radio" name="q10" value="E,3"> 3</label>
-        <label><input type="radio" name="q10" value="E,4"> 4</label>
-        <label><input type="radio" name="q10" value="E,5"> 5</label>
+        <p>10. ฉันรู้สึกมั่นใจเมื่อได้ พูดต่อหน้าคนจำนวนมาก หรือทำกิจกรรมด้านธุรกิจ</p>
+        <label><input type="radio" name="q10" value="E"> เห็นด้วย</label>
+        <label><input type="radio" name="q10" value=""> เฉย ๆ</label>
+        <label><input type="radio" name="q10" value=""> ไม่เห็นด้วย</label>
       </div>
 
-      <button type="button" onclick="calculateResult()">ส่งคำตอบ</button>
+      <button type="submit" class="btn">ส่งคำตอบ</button>
     </form>
 
-    <pre id="result"></pre>
+    <div id="result" class="result"></div>
   </main>
 
-  <footer>
-    <p>© 2025 เลือกสาขาการเรียน</p>
-  </footer>
-
   <script>
-    function calculateResult() {
-      let form = document.forms['quizForm'];
-      let scores = { R:0, I:0, A:0, S:0, E:0, C:0 };
+    const form = document.getElementById('quizForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-      // รวมคะแนน
-      for (let i=1; i<=10; i++) {
-        let answer = form['q'+i].value;
-        if (answer) {
-          let [type, point] = answer.split(",");
-          scores[type] += parseInt(point);
-        }
+      const formData = new FormData(form);
+      let scores = {R:0, I:0, A:0, S:0, E:0, C:0};
+
+      for (let [key, value] of formData.entries()) {
+        if (value) scores[value]++;
       }
 
-      // หาคะแนนสูงสุด
-      let best = Object.keys(scores).reduce((a,b) => scores[a] > scores[b] ? a : b);
+      let max = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
 
-      let majors = {
+      const majors = {
         R: "วิศวกรรม, เกษตร, ช่าง",
         I: "วิทยาศาสตร์, แพทย์, คอมพิวเตอร์",
         A: "ศิลปกรรม, ออกแบบ, นิเทศศาสตร์",
@@ -157,11 +129,10 @@
         C: "บัญชี, การเงิน, งานสำนักงาน"
       };
 
-      document.getElementById("result").innerText =
-        "คะแนนรวมของคุณ: " + JSON.stringify(scores) +
-        "\n\nบุคลิกที่เด่น: " + best +
-        "\nสาขาที่เหมาะสม: " + majors[best];
-    }
+      document.getElementById('result').innerHTML =
+        `<h3>ผลลัพธ์ของคุณคือ:</h3>
+         <p><strong>${majors[max]}</strong></p>`;
+    });
   </script>
 </body>
 </html>
