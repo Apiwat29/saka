@@ -177,3 +177,10 @@ footer {
         padding: 60px 15px;
     }
 }
+.logo {
+  width: 120px;      /* ปรับขนาดโลโก้ */
+  height: auto;      /* ให้สัดส่วนคงที่ */
+  display: block;
+  margin: 10px auto; /* จัดให้อยู่ตรงกลาง */
+}
+
