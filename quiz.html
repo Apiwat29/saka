@@ -21,19 +21,67 @@
 
       let best = Object.keys(scores).reduce((a,b) => scores[a] > scores[b] ? a : b);
 
+      // คำแนะนำพร้อมลิงก์มหาวิทยาลัย
       let majors = {
-        R: "วิศวกรรม, เกษตร, ช่าง",
-        I: "วิทยาศาสตร์, แพทย์, คอมพิวเตอร์",
-        A: "ศิลปกรรม, ออกแบบ, นิเทศศาสตร์",
-        S: "การศึกษา, พยาบาล, สังคมสงเคราะห์",
-        E: "บริหารธุรกิจ, การตลาด, นิติศาสตร์",
-        C: "บัญชี, การเงิน, งานสำนักงาน"
+        R: {
+          name: "วิศวกรรม, เกษตร, ช่าง",
+          unis: [
+            {name: "วิศวกรรม จุฬาฯ", url: "https://www.eng.chula.ac.th/"},
+            {name: "วิศวกรรม ม.เกษตรศาสตร์", url: "https://eng.ku.ac.th/"},
+            {name: "เทคโนโลยีพระจอมเกล้า", url: "https://www.kmitl.ac.th/"}
+          ]
+        },
+        I: {
+          name: "วิทยาศาสตร์, แพทย์, คอมพิวเตอร์",
+          unis: [
+            {name: "คณะวิทยาศาสตร์ ม.มหิดล", url: "https://science.mahidol.ac.th/"},
+            {name: "แพทย์ จุฬาฯ", url: "https://md.chula.ac.th/"},
+            {name: "วิศวะคอม ม.เกษตรศาสตร์", url: "https://cs.sci.ku.ac.th/"}
+          ]
+        },
+        A: {
+          name: "ศิลปกรรม, ออกแบบ, นิเทศศาสตร์",
+          unis: [
+            {name: "ศิลปกรรม จุฬาฯ", url: "https://www.arts.chula.ac.th/"},
+            {name: "คณะสถาปัตย์ ม.ศิลปากร", url: "https://www.arch.su.ac.th/"},
+            {name: "นิเทศศาสตร์ จุฬาฯ", url: "https://www.commarts.chula.ac.th/"}
+          ]
+        },
+        S: {
+          name: "การศึกษา, พยาบาล, สังคมสงเคราะห์",
+          unis: [
+            {name: "ศึกษาศาสตร์ มศว", url: "https://edu.swu.ac.th/"},
+            {name: "พยาบาล ศิริราช", url: "https://www.si.mahidol.ac.th/th/"},
+            {name: "สังคมสงเคราะห์ ม.ธรรมศาสตร์", url: "https://swsrc.tu.ac.th/"}
+          ]
+        },
+        E: {
+          name: "บริหารธุรกิจ, การตลาด, นิติศาสตร์",
+          unis: [
+            {name: "พาณิชย์ จุฬาฯ", url: "https://www.cbs.chula.ac.th/"},
+            {name: "นิติศาสตร์ ธรรมศาสตร์", url: "https://law.tu.ac.th/"},
+            {name: "การตลาด ม.เกษตรศาสตร์", url: "https://www.bus.ku.ac.th/"}
+          ]
+        },
+        C: {
+          name: "บัญชี, การเงิน, งานสำนักงาน",
+          unis: [
+            {name: "บัญชี จุฬาฯ", url: "https://www.acc.chula.ac.th/"},
+            {name: "การบัญชี ม.ธรรมศาสตร์", url: "https://www.tbs.tu.ac.th/"},
+            {name: "บัญชี ม.เชียงใหม่", url: "https://accounting.cmu.ac.th/"}
+          ]
+        }
       };
 
-      document.getElementById("result").innerText = 
-        "คะแนนรวมของคุณ: " + JSON.stringify(scores, null, 2) + 
+      let result = "คะแนนรวมของคุณ: " + JSON.stringify(scores, null, 2) + 
         "\n\nบุคลิกที่เด่น: " + best + 
-        "\nสาขาที่เหมาะสม: " + majors[best];
+        "\nสาขาที่เหมาะสม: " + majors[best].name + "\n\nมหาวิทยาลัยแนะนำ:\n";
+
+      majors[best].unis.forEach(u => {
+        result += "- " + u.name + " (" + u.url + ")\n";
+      });
+
+      document.getElementById("result").innerText = result;
     }
   </script>
 </head>
@@ -49,9 +97,7 @@
 
   <main>
     <h2>ตอบคำถามเพื่อค้นหาสาขาที่เหมาะกับคุณ</h2>
-    <form name="quizForm">
-      <!-- Q1 -->
-      <div class="question">
+    <div class="question">
         1. ฉันชอบทำงานที่ใช้เครื่องมือหรืออุปกรณ์ ลงมือปฏิบัติจริงมากกว่านั่งโต๊ะทำงาน (R)<br>
         <label><input type="radio" name="q1" value="R,1"> 1</label>
         <label><input type="radio" name="q1" value="R,2"> 2</label>
@@ -149,7 +195,8 @@
         <label><input type="radio" name="q10" value="E,4"> 4</label>
         <label><input type="radio" name="q10" value="E,5"> 5</label>
       </div>
-
+    <form name="quizForm">
+      <!-- ... (10 ข้อแบบ RIASEC) ... -->
       <button type="button" onclick="calculateResult()">ส่งคำตอบ</button>
     </form>
 
