@@ -1,32 +1,51 @@
 body {
-  font-family: Tahoma, sans-serif;
   margin: 0;
-  padding: 0;
-  background: #f5f5f5;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
 }
-header {
-  background: #4CAF50;
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  padding: 10px 20px;
   color: white;
-  padding: 15px;
-  text-align: center;
 }
-header .logo {
-  height: 60px;
+
+.navbar-left {
+  display: flex;
+  align-items: center;
 }
-nav a {
-  margin: 0 10px;
-  color: white;
+
+.navbar-left img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar-left a {
   text-decoration: none;
-}
-main {
-  padding: 20px;
-  background: white;
-  margin: 20px;
-  border-radius: 8px;
-}
-footer {
-  text-align: center;
-  padding: 10px;
-  background: #333;
   color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar-right a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-right a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
