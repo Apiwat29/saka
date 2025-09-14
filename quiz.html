@@ -2,86 +2,26 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Major Guide - Quiz</title>
+  <title>แบบทดสอบ - เว็บเลือกสาขาการเรียน</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="navbar">
-    <div class="navbar-left">
-      <a href="index.html">
-        <img src="logo.png" alt="Website Logo">
-        MajorGuide
-      </a>
-    </div>
-    <div class="navbar-right">
-      <a href="index.html">Home</a>
-      <a href="majors.html">Majors</a>
-      <a href="quiz.html">Quiz</a>
-    </div>
-  </div>
-
-  <div class="container">
-    <h1>Find Your Major</h1>
-    <p>ตอบคำถามเพื่อค้นหาสาขาที่เหมาะกับคุณ</p>
-    <form id="quizForm">
-      <ol>
-        <li>ฉันชอบทำงานที่ใช้เครื่องมือหรืออุปกรณ์ ลงมือปฏิบัติจริงมากกว่านั่งโต๊ะทำงาน (R)<br>
-          <input type="radio" name="q1" value="R"> ใช่
-          <input type="radio" name="q1" value=""> ไม่ใช่
-        </li>
-        <li>ฉันสนุกกับการสืบค้น ทดลอง หรือหาคำตอบ ด้วยวิธีการเชิงวิทยาศาสตร์ (I)<br>
-          <input type="radio" name="q2" value="I"> ใช่
-          <input type="radio" name="q2" value=""> ไม่ใช่
-        </li>
-        <li>ฉันชอบการวาดรูป เขียน แต่งเพลง หรือสร้างสรรค์งานศิลป์ (A)<br>
-          <input type="radio" name="q3" value="A"> ใช่
-          <input type="radio" name="q3" value=""> ไม่ใช่
-        </li>
-        <li>ฉันมีความสุขเวลาได้ช่วยเหลือ แนะนำ หรือสอนผู้อื่น (S)<br>
-          <input type="radio" name="q4" value="S"> ใช่
-          <input type="radio" name="q4" value=""> ไม่ใช่
-        </li>
-        <li>ฉันอยากเป็นคนที่นำเสนอไอเดีย โน้มน้าว หรือเป็นผู้นำทีม (E)<br>
-          <input type="radio" name="q5" value="E"> ใช่
-          <input type="radio" name="q5" value=""> ไม่ใช่
-        </li>
-        <li>ฉันรู้สึกพอใจเมื่อได้จัดระเบียบข้อมูล ทำงานเป็นระบบ หรือจัดการเอกสาร (C)<br>
-          <input type="radio" name="q6" value="C"> ใช่
-          <input type="radio" name="q6" value=""> ไม่ใช่
-        </li>
-        <li>ฉันสนใจงานที่เกี่ยวกับเครื่องกล อิเล็กทรอนิกส์ หรือการซ่อมบำรุง (R)<br>
-          <input type="radio" name="q7" value="R"> ใช่
-          <input type="radio" name="q7" value=""> ไม่ใช่
-        </li>
-        <li>ฉันชอบการคิดวิเคราะห์ ข้อมูลหรือทฤษฎีที่ซับซ้อน (I)<br>
-          <input type="radio" name="q8" value="I"> ใช่
-          <input type="radio" name="q8" value=""> ไม่ใช่
-        </li>
-        <li>ฉันอยากทำงานที่เปิดโอกาสให้แสดงออกทางความคิดสร้างสรรค์หรือศิลปะ (A)<br>
-          <input type="radio" name="q9" value="A"> ใช่
-          <input type="radio" name="q9" value=""> ไม่ใช่
-        </li>
-        <li>ฉันรู้สึกมั่นใจเมื่อได้พูดต่อหน้าคนจำนวนมาก หรือทำกิจกรรมด้านธุรกิจ (E)<br>
-          <input type="radio" name="q10" value="E"> ใช่
-          <input type="radio" name="q10" value=""> ไม่ใช่
-        </li>
-      </ol>
-      <button type="button" onclick="checkResult()">ดูผลลัพธ์</button>
-    </form>
-    <p id="result"></p>
-  </div>
-
+  <!-- favicon -->
+  <link rel="icon" href="logo.png" type="image/png">
   <script>
-    function checkResult() {
-      const form = document.forms["quizForm"];
-      const scores = { R:0, I:0, A:0, S:0, E:0, C:0 };
-      for (let i = 1; i <= 10; i++) {
-        const answer = form["q"+i].value;
-        if (scores.hasOwnProperty(answer)) scores[answer]++;
+    function calculateResult() {
+      let form = document.forms['quizForm'];
+      let scores = { R:0, I:0, A:0, S:0, E:0, C:0 };
+
+      for (let i=1; i<=10; i++) {
+        let answer = form['q'+i].value;
+        if (answer) {
+          let [type, point] = answer.split(",");
+          scores[type] += parseInt(point);
+        }
       }
-      let best = Object.keys(scores).reduce((a,b)=> scores[a] > scores[b] ? a : b);
-      const majors = {
+
+      let best = Object.keys(scores).reduce((a,b) => scores[a] > scores[b] ? a : b);
+
+      let majors = {
         R: "วิศวกรรม, เกษตร, ช่าง",
         I: "วิทยาศาสตร์, แพทย์, คอมพิวเตอร์",
         A: "ศิลปกรรม, ออกแบบ, นิเทศศาสตร์",
@@ -89,9 +29,131 @@
         E: "บริหารธุรกิจ, การตลาด, นิติศาสตร์",
         C: "บัญชี, การเงิน, งานสำนักงาน"
       };
-      document.getElementById("result").innerHTML = 
-        "คุณเหมาะกับสาย: <b>" + best + "</b><br>สาขาที่แนะนำ: " + majors[best];
+
+      document.getElementById("result").innerText = 
+        "คะแนนรวมของคุณ: " + JSON.stringify(scores, null, 2) + 
+        "\n\nบุคลิกที่เด่น: " + best + 
+        "\nสาขาที่เหมาะสม: " + majors[best];
     }
   </script>
+</head>
+<body>
+  <header>
+    <h1>แบบทดสอบสาขาการเรียน</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="majors.html">ข้อมูลสาขา</a>
+      <a href="quiz.html">แบบทดสอบ</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>ตอบคำถามเพื่อค้นหาสาขาที่เหมาะกับคุณ</h2>
+    <form name="quizForm">
+      <!-- Q1 -->
+      <div class="question">
+        1. ฉันชอบทำงานที่ใช้เครื่องมือหรืออุปกรณ์ ลงมือปฏิบัติจริงมากกว่านั่งโต๊ะทำงาน (R)<br>
+        <label><input type="radio" name="q1" value="R,1"> 1</label>
+        <label><input type="radio" name="q1" value="R,2"> 2</label>
+        <label><input type="radio" name="q1" value="R,3"> 3</label>
+        <label><input type="radio" name="q1" value="R,4"> 4</label>
+        <label><input type="radio" name="q1" value="R,5"> 5</label>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question">
+        2. ฉันชอบวิเคราะห์ ทดลอง และค้นหาคำตอบจากปัญหาต่างๆ (I)<br>
+        <label><input type="radio" name="q2" value="I,1"> 1</label>
+        <label><input type="radio" name="q2" value="I,2"> 2</label>
+        <label><input type="radio" name="q2" value="I,3"> 3</label>
+        <label><input type="radio" name="q2" value="I,4"> 4</label>
+        <label><input type="radio" name="q2" value="I,5"> 5</label>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question">
+        3. ฉันชอบงานที่เกี่ยวกับการสร้างสรรค์ งานศิลป์ ดนตรี หรือการออกแบบ (A)<br>
+        <label><input type="radio" name="q3" value="A,1"> 1</label>
+        <label><input type="radio" name="q3" value="A,2"> 2</label>
+        <label><input type="radio" name="q3" value="A,3"> 3</label>
+        <label><input type="radio" name="q3" value="A,4"> 4</label>
+        <label><input type="radio" name="q3" value="A,5"> 5</label>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question">
+        4. ฉันชอบช่วยเหลือผู้อื่น แนะนำหรือสอนคนอื่น (S)<br>
+        <label><input type="radio" name="q4" value="S,1"> 1</label>
+        <label><input type="radio" name="q4" value="S,2"> 2</label>
+        <label><input type="radio" name="q4" value="S,3"> 3</label>
+        <label><input type="radio" name="q4" value="S,4"> 4</label>
+        <label><input type="radio" name="q4" value="S,5"> 5</label>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question">
+        5. ฉันชอบทำงานที่ต้องโน้มน้าว อภิปราย หรือชักชวนผู้อื่น (E)<br>
+        <label><input type="radio" name="q5" value="E,1"> 1</label>
+        <label><input type="radio" name="q5" value="E,2"> 2</label>
+        <label><input type="radio" name="q5" value="E,3"> 3</label>
+        <label><input type="radio" name="q5" value="E,4"> 4</label>
+        <label><input type="radio" name="q5" value="E,5"> 5</label>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question">
+        6. ฉันชอบงานที่เป็นระเบียบ มีระบบ และทำตามขั้นตอนชัดเจน (C)<br>
+        <label><input type="radio" name="q6" value="C,1"> 1</label>
+        <label><input type="radio" name="q6" value="C,2"> 2</label>
+        <label><input type="radio" name="q6" value="C,3"> 3</label>
+        <label><input type="radio" name="q6" value="C,4"> 4</label>
+        <label><input type="radio" name="q6" value="C,5"> 5</label>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question">
+        7. ฉันรู้สึกสนุกกับการทำงานกลางแจ้งหรือใช้แรงกาย (R)<br>
+        <label><input type="radio" name="q7" value="R,1"> 1</label>
+        <label><input type="radio" name="q7" value="R,2"> 2</label>
+        <label><input type="radio" name="q7" value="R,3"> 3</label>
+        <label><input type="radio" name="q7" value="R,4"> 4</label>
+        <label><input type="radio" name="q7" value="R,5"> 5</label>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question">
+        8. ฉันชอบค้นคว้าหรือทำวิจัยมากกว่าการขายหรือโฆษณา (I)<br>
+        <label><input type="radio" name="q8" value="I,1"> 1</label>
+        <label><input type="radio" name="q8" value="I,2"> 2</label>
+        <label><input type="radio" name="q8" value="I,3"> 3</label>
+        <label><input type="radio" name="q8" value="I,4"> 4</label>
+        <label><input type="radio" name="q8" value="I,5"> 5</label>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question">
+        9. ฉันชอบงานที่เปิดโอกาสให้แสดงออกในแนวทางของตัวเอง (A)<br>
+        <label><input type="radio" name="q9" value="A,1"> 1</label>
+        <label><input type="radio" name="q9" value="A,2"> 2</label>
+        <label><input type="radio" name="q9" value="A,3"> 3</label>
+        <label><input type="radio" name="q9" value="A,4"> 4</label>
+        <label><input type="radio" name="q9" value="A,5"> 5</label>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question">
+        10. ฉันชอบทำงานที่ต้องวางแผน จัดการ และควบคุมผู้อื่น (E)<br>
+        <label><input type="radio" name="q10" value="E,1"> 1</label>
+        <label><input type="radio" name="q10" value="E,2"> 2</label>
+        <label><input type="radio" name="q10" value="E,3"> 3</label>
+        <label><input type="radio" name="q10" value="E,4"> 4</label>
+        <label><input type="radio" name="q10" value="E,5"> 5</label>
+      </div>
+
+      <button type="button" onclick="calculateResult()">ส่งคำตอบ</button>
+    </form>
+
+    <pre id="result"></pre>
+  </main>
 </body>
 </html>
