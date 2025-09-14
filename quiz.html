@@ -1,38 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MajorGuide - Quiz</title>
+  <title>แบบทดสอบ RIASEC</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <img src="logo.jpg" alt="Website Logo" class="logo">
-    <h1>MajorGuide</h1>
+    <img src="logo.jpg" alt="โลโก้" class="logo">
+    <h1>Career Path Finder</h1>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="majors.html">Majors</a>
-      <a href="quiz.html">Quiz</a>
+      <a href="index.html">หน้าแรก</a>
+      <a href="majors.html">แนะนำสาขา</a>
+      <a href="quiz.html">แบบทดสอบ</a>
     </nav>
   </header>
 
   <main>
-    <section>
-      <h2>Find Your Major</h2>
-      <p>ตอบคำถามเพื่อค้นหาสาขาที่เหมาะกับคุณ</p>
-      <form class="quiz-form">
-        <label>คุณชอบการแก้ปัญหาเชิงคณิตศาสตร์หรือไม่?</label><br>
-        <input type="radio" name="q1" value="วิศวกรรมศาสตร์"> ใช่<br>
-        <input type="radio" name="q1" value="ศิลปศาสตร์"> ไม่ใช่<br><br>
+    <h2>แบบทดสอบ RIASEC</h2>
+    <p>กรุณาตอบคำถามต่อไปนี้เพื่อหาสาขาที่เหมาะสมกับคุณ</p>
 
-        <label>คุณสนใจเทคโนโลยีและการเขียนโปรแกรมหรือไม่?</label><br>
-        <input type="radio" name="q2" value="วิทยาศาสตร์คอมพิวเตอร์"> ใช่<br>
-        <input type="radio" name="q2" value="บริหารธุรกิจ"> ไม่ใช่<br><br>
+    <form id="quizForm" class="quiz-form">
+      <!-- Realistic -->
+      <h3>R - Realistic</h3>
+      <label><input type="checkbox" name="R" value="1"> ฉันชอบทำงานกับเครื่องจักร เครื่องมือ หรือสิ่งของ</label><br>
+      <label><input type="checkbox" name="R" value="1"> ฉันชอบทำกิจกรรมกลางแจ้ง เช่น ปลูกต้นไม้ ซ่อมแซมสิ่งของ</label><br>
 
-        <button type="submit" class="btn">ดูผลลัพธ์</button>
-      </form>
-    </section>
+      <!-- Investigative -->
+      <h3>I - Investigative</h3>
+      <label><input type="checkbox" name="I" value="1"> ฉันชอบคิด วิเคราะห์ ทดลอง และค้นคว้า</label><br>
+      <label><input type="checkbox" name="I" value="1"> ฉันสนใจการทำวิจัย วิทยาศาสตร์ และเทคโนโลยี</label><br>
+
+      <!-- Artistic -->
+      <h3>A - Artistic</h3>
+      <label><input type="checkbox" name="A" value="1"> ฉันชอบวาดรูป แต่งเพลง เขียนเรื่องราว หรือออกแบบ</label><br>
+      <label><input type="checkbox" name="A" value="1"> ฉันชอบทำสิ่งใหม่ๆ ด้วยความคิดสร้างสรรค์</label><br>
+
+      <!-- Social -->
+      <h3>S - Social</h3>
+      <label><input type="checkbox" name="S" value="1"> ฉันชอบช่วยเหลือผู้อื่นหรือสอนคนอื่น</label><br>
+      <label><input type="checkbox" name="S" value="1"> ฉันชอบทำงานที่เกี่ยวข้องกับชุมชนและสังคม</label><br>
+
+      <!-- Enterprising -->
+      <h3>E - Enterprising</h3>
+      <label><input type="checkbox" name="E" value="1"> ฉันชอบชักชวน เจรจา และการบริหารจัดการ</label><br>
+      <label><input type="checkbox" name="E" value="1"> ฉันสนใจการเป็นผู้นำหรือการทำธุรกิจ</label><br>
+
+      <!-- Conventional -->
+      <h3>C - Conventional</h3>
+      <label><input type="checkbox" name="C" value="1"> ฉันชอบงานเอกสาร ตัวเลข หรือข้อมูล</label><br>
+      <label><input type="checkbox" name="C" value="1"> ฉันชอบงานที่มีระเบียบชัดเจน</label><br>
+
+      <br>
+      <button type="button" onclick="calculateResult()" class="btn">ดูผลลัพธ์</button>
+    </form>
+
+    <div id="result"></div>
   </main>
+
+  <script>
+    function calculateResult() {
+      const categories = ["R","I","A","S","E","C"];
+      let scores = {R:0,I:0,A:0,S:0,E:0,C:0};
+
+      categories.forEach(cat => {
+        document.querySelectorAll(`input[name=${cat}]:checked`).forEach(() => {
+          scores[cat]++;
+        });
+      });
+
+      // หาค่า max
+      let maxCategory = Object.keys(scores).reduce((a,b) => scores[a] > scores[b] ? a : b);
+
+      let resultText = {
+        R: "คุณเหมาะกับสาย Realistic (วิศวกรรม เกษตรกรรม เทคโนโลยีเชิงปฏิบัติ)",
+        I: "คุณเหมาะกับสาย Investigative (วิทยาศาสตร์ วิจัย แพทย์ วิศวกรรมข้อมูล)",
+        A: "คุณเหมาะกับสาย Artistic (ศิลปกรรม ดนตรี นิเทศศาสตร์)",
+        S: "คุณเหมาะกับสาย Social (ครุศาสตร์ จิตวิทยา พยาบาล)",
+        E: "คุณเหมาะกับสาย Enterprising (บริหารธุรกิจ การตลาด การจัดการ)",
+        C: "คุณเหมาะกับสาย Conventional (บัญชี การเงิน สารสนเทศ)"
+      };
+
+      document.getElementById("result").innerHTML =
+        `<h3>ผลลัพธ์ของคุณคือ: ${maxCategory}</h3><p>${resultText[maxCategory]}</p>
+        <p><a href='majors.html' class='btn'>ไปยังหน้าสาขาที่แนะนำ</a></p>`;
+    }
+  </script>
 </body>
 </html>
