@@ -2,234 +2,108 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>แบบทดสอบเลือกสาขา (RIASEC)</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="logo.png">
-  <style>
-    body {
-      font-family: "Tahoma", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f6f9;
-    }
-    header {
-      background: #003366;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    main {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-    .quiz-card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-    }
-    .quiz-card h2 {
-      text-align: center;
-      color: #003366;
-      margin-bottom: 20px;
-    }
-    ol {
-      padding-left: 20px;
-    }
-    ol li {
-      margin-bottom: 18px;
-      line-height: 1.6;
-      padding: 10px;
-      background: #f9fbfd;
-      border-radius: 8px;
-      border: 1px solid #e0e6ed;
-    }
-    label {
-      margin-right: 10px;
-    }
-    button {
-      background: #007bff;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      display: block;
-      margin: 20px auto;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    .progress-container {
-      width: 100%;
-      background: #ddd;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      height: 22px;
-    }
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #28a745, #5cd65c);
-      border-radius: 20px;
-      transition: width 0.3s;
-    }
-    #result {
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: 10px;
-      display: none;
-      background: #e9f7ef;
-      border: 1px solid #28a745;
-      text-align: center;
-      font-size: 18px;
-    }
-    #toMajors {
-      display: none;
-      margin: 20px auto 0 auto;
-      background: #17a2b8;
-    }
-    footer {
-      text-align:center; 
-      padding:15px; 
-      background:#003366; 
-      color:white; 
-      margin-top:30px;
-    }
-  </style>
-  <script>
-    function updateProgress() {
-      const totalQuestions = 10;
-      const answered = document.querySelectorAll("input[type=radio]:checked").length;
-      const percent = (answered / totalQuestions) * 100;
-      document.getElementById("progress").style.width = percent + "%";
-    }
-
-    function calculateScore() {
-      const scores = {R:0, I:0, A:0, S:0, E:0, C:0};
-      const form = document.getElementById("quizForm");
-      const formData = new FormData(form);
-
-      for (let [key, value] of formData.entries()) {
-        scores[key] += parseInt(value);
-      }
-
-      let maxType = Object.keys(scores).reduce((a,b) => scores[a] > scores[b] ? a : b);
-      let suggestion = "";
-      switch(maxType) {
-        case "R": suggestion = "คุณเหมาะกับสาขา วิศวกรรม, เกษตร, ช่าง"; break;
-        case "I": suggestion = "คุณเหมาะกับสาขา วิทยาศาสตร์, แพทย์, คอมพิวเตอร์"; break;
-        case "A": suggestion = "คุณเหมาะกับสาขา ศิลปกรรม, ออกแบบ, นิเทศศาสตร์"; break;
-        case "S": suggestion = "คุณเหมาะกับสาขา การศึกษา, พยาบาล, สังคมสงเคราะห์"; break;
-        case "E": suggestion = "คุณเหมาะกับสาขา บริหารธุรกิจ, การตลาด, นิติศาสตร์"; break;
-        case "C": suggestion = "คุณเหมาะกับสาขา บัญชี, การเงิน, งานสำนักงาน"; break;
-      }
-
-      document.getElementById("result").style.display = "block";
-      document.getElementById("result").innerHTML = "<h3>ผลลัพธ์ของคุณ</h3><p>" + suggestion + "</p>";
-      document.getElementById("toMajors").style.display = "inline-block";
-    }
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบทดสอบเลือกสาขา</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Navbar -->
   <header>
-    <h1>แบบทดสอบเลือกสาขา (RIASEC)</h1>
-    <nav>
-      <a href="index.html">หน้าแรก</a>
-      <a href="majors.html">ข้อมูลสาขา</a>
-      <a href="quiz.html">แบบทดสอบ</a>
-    </nav>
+    <div class="navbar">
+      <img src="logo.png" alt="โลโก้เว็บ" class="logo">
+      <nav>
+        <ul>
+          <li><a href="index.html">หน้าแรก</a></li>
+          <li><a href="majors.html">ข้อมูลสาขา</a></li>
+          <li><a href="quiz.html" class="active">แบบทดสอบ</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <div class="quiz-card">
-      <h2>โปรดตอบคำถามต่อไปนี้</h2>
-      <div class="progress-container">
-        <div class="progress-bar" id="progress"></div>
+  <!-- ส่วนหัว -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>แบบทดสอบความถนัด RIASEC</h1>
+      <p>ตอบคำถามด้านล่างเพื่อหาสาขาที่เหมาะกับคุณ</p>
+    </div>
+  </section>
+
+  <!-- ส่วนแบบทดสอบ -->
+  <main class="quiz-container">
+    <form id="quizForm">
+      <h2>เลือกคำตอบที่ตรงกับคุณมากที่สุด</h2>
+
+      <div class="question">
+        <p>1. ฉันชอบทำงานเกี่ยวกับการแก้ปัญหาทางคณิตศาสตร์หรือวิทยาศาสตร์</p>
+        <label><input type="radio" name="q1" value="I"> เห็นด้วย</label>
+        <label><input type="radio" name="q1" value="R"> ไม่เห็นด้วย</label>
       </div>
 
-      <form id="quizForm" onsubmit="event.preventDefault(); calculateScore();">
-        <ol>
-          <li>ฉันชอบทำงานที่ใช้เครื่องมือหรืออุปกรณ์ ลงมือปฏิบัติจริง (R)<br>
-            <label><input type="radio" name="R" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="R" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="R" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
+      <div class="question">
+        <p>2. ฉันชอบทำกิจกรรมที่เกี่ยวข้องกับศิลปะ ดนตรี หรือการแสดง</p>
+        <label><input type="radio" name="q2" value="A"> เห็นด้วย</label>
+        <label><input type="radio" name="q2" value="R"> ไม่เห็นด้วย</label>
+      </div>
 
-          <li>ฉันสนุกกับการสืบค้น ทดลอง หรือหาคำตอบเชิงวิทยาศาสตร์ (I)<br>
-            <label><input type="radio" name="I" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="I" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="I" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
+      <div class="question">
+        <p>3. ฉันชอบทำงานที่ได้ช่วยเหลือหรือให้คำปรึกษาคนอื่น</p>
+        <label><input type="radio" name="q3" value="S"> เห็นด้วย</label>
+        <label><input type="radio" name="q3" value="R"> ไม่เห็นด้วย</label>
+      </div>
 
-          <li>ฉันชอบการวาดรูป เขียน แต่งเพลง หรือสร้างสรรค์งานศิลป์ (A)<br>
-            <label><input type="radio" name="A" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="A" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="A" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
+      <div class="question">
+        <p>4. ฉันถนัดการเป็นผู้นำและการจัดการทีม</p>
+        <label><input type="radio" name="q4" value="E"> เห็นด้วย</label>
+        <label><input type="radio" name="q4" value="R"> ไม่เห็นด้วย</label>
+      </div>
 
-          <li>ฉันมีความสุขเวลาได้ช่วยเหลือ แนะนำ หรือสอนผู้อื่น (S)<br>
-            <label><input type="radio" name="S" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="S" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="S" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
+      <div class="question">
+        <p>5. ฉันชอบงานที่ต้องใช้รายละเอียด ความถูกต้อง และการทำงานเอกสาร</p>
+        <label><input type="radio" name="q5" value="C"> เห็นด้วย</label>
+        <label><input type="radio" name="q5" value="R"> ไม่เห็นด้วย</label>
+      </div>
 
-          <li>ฉันอยากเป็นคนที่นำเสนอไอเดีย โน้มน้าว หรือเป็นผู้นำทีม (E)<br>
-            <label><input type="radio" name="E" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="E" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="E" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
+      <div class="question">
+        <p>6. ฉันชอบทำงานกลางแจ้ง หรือใช้แรงกาย เช่น งานเกษตร งานก่อสร้าง</p>
+        <label><input type="radio" name="q6" value="R"> เห็นด้วย</label>
+        <label><input type="radio" name="q6" value="I"> ไม่เห็นด้วย</label>
+      </div>
 
-          <li>ฉันรู้สึกพอใจเมื่อได้จัดระเบียบข้อมูล ทำงานเป็นระบบ (C)<br>
-            <label><input type="radio" name="C" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="C" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="C" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
+      <div class="question">
+        <p>7. ฉันสนใจค้นคว้า ทดลอง และหาความรู้ใหม่ ๆ</p>
+        <label><input type="radio" name="q7" value="I"> เห็นด้วย</label>
+        <label><input type="radio" name="q7" value="C"> ไม่เห็นด้วย</label>
+      </div>
 
-          <li>ฉันสนใจงานที่เกี่ยวกับเครื่องกล อิเล็กทรอนิกส์ หรือการซ่อมบำรุง (R)<br>
-            <label><input type="radio" name="R" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="R" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="R" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
+      <div class="question">
+        <p>8. ฉันชอบสร้างสรรค์ผลงานที่แสดงความเป็นเอกลักษณ์ของตัวเอง</p>
+        <label><input type="radio" name="q8" value="A"> เห็นด้วย</label>
+        <label><input type="radio" name="q8" value="E"> ไม่เห็นด้วย</label>
+      </div>
 
-          <li>ฉันชอบการคิดวิเคราะห์ ข้อมูลหรือทฤษฎีที่ซับซ้อน (I)<br>
-            <label><input type="radio" name="I" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="I" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="I" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
+      <div class="question">
+        <p>9. ฉันรู้สึกดีเมื่อได้ช่วยเหลือผู้อื่นให้ประสบความสำเร็จ</p>
+        <label><input type="radio" name="q9" value="S"> เห็นด้วย</label>
+        <label><input type="radio" name="q9" value="C"> ไม่เห็นด้วย</label>
+      </div>
 
-          <li>ฉันอยากทำงานที่เปิดโอกาสให้แสดงออกทางความคิดสร้างสรรค์หรือศิลปะ (A)<br>
-            <label><input type="radio" name="A" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="A" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="A" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
+      <div class="question">
+        <p>10. ฉันสนใจการบริหารธุรกิจและการทำกำไร</p>
+        <label><input type="radio" name="q10" value="E"> เห็นด้วย</label>
+        <label><input type="radio" name="q10" value="R"> ไม่เห็นด้วย</label>
+      </div>
 
-          <li>ฉันรู้สึกมั่นใจเมื่อได้พูดต่อหน้าคนจำนวนมาก หรือทำกิจกรรมด้านธุรกิจ (E)<br>
-            <label><input type="radio" name="E" value="5" onclick="updateProgress()"> เห็นด้วย</label>
-            <label><input type="radio" name="E" value="3" onclick="updateProgress()"> เฉย ๆ</label>
-            <label><input type="radio" name="E" value="1" onclick="updateProgress()"> ไม่เห็นด้วย</label>
-          </li>
-        </ol>
-
-        <button type="submit">ส่งคำตอบ</button>
-      </form>
-
-      <div id="result"></div>
-      <a href="majors.html"><button id="toMajors">ไปที่หน้าข้อมูลสาขา</button></a>
-    </div>
+      <button type="submit" class="btn-submit">ดูผลลัพธ์</button>
+    </form>
   </main>
 
-  <footer>
-    © 2025 เว็บไซต์แนะนำสาขาการเรียน
-  </footer>
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("ระบบจะวิเคราะห์คำตอบแล้วพาคุณไปยังสาขาที่เหมาะสม (ตัวอย่าง)");
+      window.location.href = "majors.html";
+    });
+  </script>
 </body>
 </html>
