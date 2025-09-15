@@ -2,35 +2,31 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>เลือกสาขาการเรียน</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MajorGuide — Home</title>
   <link rel="stylesheet" href="style.css">
-  <!-- ไอคอนในแท็บ -->
-  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="icon" href="logo.png" type="image/png">
 </head>
 <body>
   <header>
-    <h1>แนะนำสาขาการเรียน</h1>
-    <nav>
-      <a href="index.html">หน้าแรก</a>
-      <a href="majors.html">ข้อมูลสาขา</a>
-      <a href="quiz.html">แบบทดสอบ</a>
+    <nav class="navbar">
+      <img src="logo.png" alt="MajorGuide Logo" class="logo">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="majors.html">ข้อมูลสาขา</a></li>
+        <li><a href="quiz.html">ทำแบบทดสอบ</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main>
-    <h2>ยินดีต้อนรับ</h2>
-    <p>
-      เว็บไซต์นี้ถูกสร้างขึ้นเพื่อช่วยนักเรียนเลือกสาขาการเรียนที่เหมาะสม 
-      ตามความสามารถ ความถนัด และความชอบของตนเอง  
-      โดยใช้แบบทดสอบ RIASEC (Holland Codes)  
-      ที่แบ่งออกเป็น 6 ด้าน ได้แก่ R, I, A, S, E และ C
-    </p>
-    <img src="logo.png" alt="โลโก้เว็บไซต์" style="max-width:200px; margin-top:20px;">
+  <main class="hero">
+    <h1>ยินดีต้อนรับสู่ MajorGuide</h1>
+    <p>เว็บไซต์นี้ถูกสร้างขึ้นเพื่อช่วยให้คุณเลือกสาขาการเรียนที่เหมาะกับความสามารถและความชอบของคุณ</p>
+    <a href="quiz.html" class="btn">เริ่มทำแบบทดสอบ</a>
   </main>
 
   <footer>
-    <p>© 2025 เว็บไซต์แนะนำสาขาการเรียน</p>
+    <p>© 2025 MajorGuide</p>
   </footer>
 </body>
 </html>
-
