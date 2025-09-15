@@ -1,232 +1,107 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <title>แบบทดสอบ RIASEC</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="logo.png">
+body {
+  font-family: "Prompt", sans-serif;
+  margin: 0;
+  background: #f4f8fb;
+  color: #333;
+}
 
-  <style>
-    body {
-      font-family: "Tahoma", sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
+header {
+  background: #2196f3;
+  padding: 0.5rem 1rem;
+}
 
-    header {
-      background: #004d99;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.logo {
+  height: 40px;
+}
 
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
+.navbar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
 
-    ol {
-      padding-left: 20px;
-    }
+.navbar li {
+  margin-left: 1rem;
+}
 
-    li {
-      margin-bottom: 15px;
-    }
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
 
-    button {
-      background: #004d99;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+.navbar a:hover,
+.navbar a.active {
+  background: rgba(255, 255, 255, 0.2);
+}
 
-    button:hover {
-      background: #0066cc;
-    }
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(120deg, #2196f3, #6ec6ff);
+  color: white;
+}
 
-    .progress-container {
-      width: 100%;
-      background: #ddd;
-      border-radius: 20px;
-      overflow: hidden;
-      margin: 20px 0;
-      height: 25px;
-    }
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
 
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background: #4CAF50;
-      text-align: center;
-      color: white;
-      line-height: 25px;
-      transition: width 0.3s;
-    }
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
 
-    #resultBox {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 8px;
-      background: #e6f2ff;
-      border: 1px solid #99ccff;
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>แบบทดสอบเลือกสาขา (RIASEC)</h1>
-    <nav>
-      <a href="index.html">หน้าแรก</a>
-      <a href="majors.html">ข้อมูลสาขา</a>
-      <a href="quiz.html">แบบทดสอบ</a>
-    </nav>
-  </header>
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+}
 
-  <main>
-    <h2>โปรดตอบคำถามด้านล่าง</h2>
+.btn:hover {
+  background: #e68900;
+}
 
-    <!-- Progress Bar -->
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar">0%</div>
-    </div>
+.content {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
 
-    <form id="quizForm" onsubmit="event.preventDefault(); calculateScore();">
-      <ol>
-        <li>ฉันชอบทำงานที่ใช้เครื่องมือหรืออุปกรณ์ ลงมือปฏิบัติจริงมากกว่านั่งโต๊ะทำงาน (R)<br>
-          <label><input type="radio" name="Q1" value="R-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q1" value="R-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q1" value="R-1"> ไม่เห็นด้วย</label>
-        </li>
+.content h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-        <li>ฉันสนุกกับการสืบค้น ทดลอง หรือหาคำตอบ ด้วยวิธีการเชิงวิทยาศาสตร์ (I)<br>
-          <label><input type="radio" name="Q2" value="I-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q2" value="I-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q2" value="I-1"> ไม่เห็นด้วย</label>
-        </li>
+section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-        <li>ฉันชอบการวาดรูป เขียน แต่งเพลง หรือสร้างสรรค์งานศิลป์ (A)<br>
-          <label><input type="radio" name="Q3" value="A-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q3" value="A-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q3" value="A-1"> ไม่เห็นด้วย</label>
-        </li>
+section h3 {
+  color: #2196f3;
+}
 
-        <li>ฉันมีความสุขเวลาได้ช่วยเหลือ แนะนำ หรือสอนผู้อื่น (S)<br>
-          <label><input type="radio" name="Q4" value="S-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q4" value="S-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q4" value="S-1"> ไม่เห็นด้วย</label>
-        </li>
-
-        <li>ฉันอยากเป็นคนที่นำเสนอไอเดีย โน้มน้าว หรือเป็นผู้นำทีม (E)<br>
-          <label><input type="radio" name="Q5" value="E-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q5" value="E-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q5" value="E-1"> ไม่เห็นด้วย</label>
-        </li>
-
-        <li>ฉันรู้สึกพอใจเมื่อได้จัดระเบียบข้อมูล ทำงานเป็นระบบ หรือจัดการเอกสาร (C)<br>
-          <label><input type="radio" name="Q6" value="C-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q6" value="C-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q6" value="C-1"> ไม่เห็นด้วย</label>
-        </li>
-
-        <li>ฉันสนใจงานที่เกี่ยวกับเครื่องกล อิเล็กทรอนิกส์ หรือการซ่อมบำรุง (R)<br>
-          <label><input type="radio" name="Q7" value="R-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q7" value="R-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q7" value="R-1"> ไม่เห็นด้วย</label>
-        </li>
-
-        <li>ฉันชอบการคิดวิเคราะห์ ข้อมูลหรือทฤษฎีที่ซับซ้อน (I)<br>
-          <label><input type="radio" name="Q8" value="I-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q8" value="I-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q8" value="I-1"> ไม่เห็นด้วย</label>
-        </li>
-
-        <li>ฉันอยากทำงานที่เปิดโอกาสให้แสดงออกทางความคิดสร้างสรรค์หรือศิลปะ (A)<br>
-          <label><input type="radio" name="Q9" value="A-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q9" value="A-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q9" value="A-1"> ไม่เห็นด้วย</label>
-        </li>
-
-        <li>ฉันรู้สึกมั่นใจเมื่อได้พูดต่อหน้าคนจำนวนมาก หรือทำกิจกรรมด้านธุรกิจ (E)<br>
-          <label><input type="radio" name="Q10" value="E-5"> เห็นด้วย</label>
-          <label><input type="radio" name="Q10" value="E-3"> เฉย ๆ</label>
-          <label><input type="radio" name="Q10" value="E-1"> ไม่เห็นด้วย</label>
-        </li>
-      </ol>
-
-      <button type="submit">ส่งคำตอบ</button>
-    </form>
-
-    <div id="resultBox"></div>
-  </main>
-
-  <footer>
-    <p>© 2025 เว็บไซต์แนะนำสาขาการเรียน</p>
-  </footer>
-
-  <script>
-    const totalQuestions = 10;
-
-    // อัปเดต progress bar เมื่อเลือกคำตอบ
-    document.querySelectorAll("input[type=radio]").forEach(input => {
-      input.addEventListener("change", updateProgress);
-    });
-
-    function updateProgress() {
-      let answered = new Set();
-      document.querySelectorAll("input[type=radio]:checked").forEach(input => {
-        answered.add(input.name);
-      });
-      let percent = Math.round((answered.size / totalQuestions) * 100);
-      let bar = document.getElementById("progressBar");
-      bar.style.width = percent + "%";
-      bar.textContent = percent + "%";
-    }
-
-    function calculateScore() {
-      const scores = {R:0, I:0, A:0, S:0, E:0, C:0};
-      const formData = new FormData(document.getElementById("quizForm"));
-
-      for (let [key, value] of formData.entries()) {
-        let [type, point] = value.split("-");
-        scores[type] += parseInt(point);
-      }
-
-      let maxType = Object.keys(scores).reduce((a,b) => scores[a] > scores[b] ? a : b);
-
-      const suggestions = {
-        R: "คุณเหมาะกับสาขา วิศวกรรม, เกษตร, ช่าง",
-        I: "คุณเหมาะกับสาขา วิทยาศาสตร์, แพทย์, คอมพิวเตอร์",
-        A: "คุณเหมาะกับสาขา ศิลปกรรม, ออกแบบ, นิเทศศาสตร์",
-        S: "คุณเหมาะกับสาขา การศึกษา, พยาบาล, สังคมสงเคราะห์",
-        E: "คุณเหมาะกับสาขา บริหารธุรกิจ, การตลาด, นิติศาสตร์",
-        C: "คุณเหมาะกับสาขา บัญชี, การเงิน, งานสำนักงาน"
-      };
-
-      let resultBox = document.getElementById("resultBox");
-      resultBox.style.display = "block";
-      resultBox.innerHTML = `
-        <h3>ผลลัพธ์ของคุณคือ: ${maxType}</h3>
-        <p>${suggestions[maxType]}</p>
-        <p><a href="majors.html">ไปยังหน้าข้อมูลสาขาที่เกี่ยวข้อง</a></p>
-      `;
-    }
-  </script>
-</body>
-</html>
+footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  background: #eee;
+}
