@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>แบบทดสอบเลือกสาขา</title>
-  <link rel="stylesheet" href="styles.css">
   <style>
     body {
       font-family: "Prompt", sans-serif;
@@ -101,6 +100,30 @@
     .btn-submit:hover {
       background: #2980b9;
     }
+
+    .result-box {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 10px;
+      background: #ecf7ff;
+      border: 2px solid #3498db;
+    }
+
+    .result-box h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .scores {
+      margin: 10px 0;
+      line-height: 1.8;
+    }
+
+    .suggestion {
+      font-weight: bold;
+      color: #2980b9;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
@@ -191,13 +214,50 @@
 
       <button type="submit" class="btn-submit">ดูผลลัพธ์</button>
     </form>
+
+    <div id="result" class="result-box" style="display:none;"></div>
   </main>
 
   <script>
     document.getElementById("quizForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      alert("ระบบจะวิเคราะห์คำตอบแล้วพาคุณไปยังสาขาที่เหมาะสม (ตัวอย่าง)");
-      window.location.href = "majors.html";
+
+      const scores = {R:0, I:0, A:0, S:0, E:0, C:0};
+      const formData = new FormData(this);
+
+      for (let [key, value] of formData.entries()) {
+        scores[value]++;
+      }
+
+      // หาประเภทที่ได้คะแนนสูงสุด
+      let maxType = Object.keys(scores).reduce((a,b) => scores[a] > scores[b] ? a : b);
+
+      let suggestion = "";
+      switch(maxType) {
+        case "R": suggestion = "คุณเหมาะกับสาขา วิศวกรรม, เกษตร, ช่าง"; break;
+        case "I": suggestion = "คุณเหมาะกับสาขา วิทยาศาสตร์, แพทย์, คอมพิวเตอร์"; break;
+        case "A": suggestion = "คุณเหมาะกับสาขา ศิลปกรรม, ออกแบบ, นิเทศศาสตร์"; break;
+        case "S": suggestion = "คุณเหมาะกับสาขา การศึกษา, พยาบาล, สังคมสงเคราะห์"; break;
+        case "E": suggestion = "คุณเหมาะกับสาขา บริหารธุรกิจ, การตลาด, นิติศาสตร์"; break;
+        case "C": suggestion = "คุณเหมาะกับสาขา บัญชี, การเงิน, งานสำนักงาน"; break;
+      }
+
+      // แสดงผลลัพธ์
+      const resultBox = document.getElementById("result");
+      resultBox.style.display = "block";
+      resultBox.innerHTML = `
+        <h3>ผลลัพธ์ของคุณ</h3>
+        <div class="scores">
+          <p>R (Realistic) = ${scores.R}</p>
+          <p>I (Investigative) = ${scores.I}</p>
+          <p>A (Artistic) = ${scores.A}</p>
+          <p>S (Social) = ${scores.S}</p>
+          <p>E (Enterprising) = ${scores.E}</p>
+          <p>C (Conventional) = ${scores.C}</p>
+        </div>
+        <p class="suggestion">${suggestion}</p>
+      `;
+      resultBox.scrollIntoView({behavior:"smooth"});
     });
   </script>
 </body>
